@@ -1,10 +1,9 @@
-# Basic Ticket Information Sample App
+# SP Checker App (Zendeks)
 
 
-### The following information is displayed:
+### This Zendesk application is designed to:
 
-* Ticket response type
-* Ticket comment text
+* Not allow sales priority to be removed if it has been set
 
 
 
