@@ -1,0 +1,12 @@
+{
+  "name": "SP Checker App",
+  "author": {
+    "name": "Brian Collins",
+    "email": "bcollins@newrelic.com"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": ["ticket_sidebar", "new_ticket_sidebar"],
+  "version": "0.1",
+  "frameworkVersion": "1.0"
+}
