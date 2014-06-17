@@ -1,6 +1,7 @@
 (function() {
 
  var initialScore = "";
+ var finalScore = "";
 
   return { // the entire app goes inside this return block!
     // listen for API events such as the start of our app, when bits of it get clicked on or when AJAX requests complete
@@ -27,7 +28,16 @@
     ticketSaveHandler: function(data) { // function called when we load
       console.log("Initial Sales Priority selected value is:");
       console.log(this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label());
-      var finalScore = this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label();       
+      
+      if (this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")) != 'undefined') 
+      {
+        finalScore = this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label();        
+      }
+      else
+      {
+        finalScore = '-';
+      }
+      
 
       console.log("initial and final scores");
       console.log(initialScore);
@@ -35,6 +45,9 @@
 
       if (initialScore != '-' && finalScore == '-')
       {
+
+        var msg = '<strong>FAIL!</strong>';
+        services.notify(msg, 'alert');
         console.log("You cannot remove the SP score!");
         return false;
       }
