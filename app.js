@@ -2,8 +2,8 @@
 
  var initialScore = "";
  var finalScore = "";
- var CUSTOM_FIELD_ID = 24001886;    // for my sandbox
- //var CUSTOM_FIELD_ID = 20883706;  // for production 
+ //var CUSTOM_FIELD_ID = 24001886;    // for my sandbox
+ var CUSTOM_FIELD_ID = 20883706;  // for production 
 
   return { // the entire app goes inside this return block!
     // listen for API events such as the start of our app, when bits of it get clicked on or when AJAX requests complete
@@ -50,7 +50,5 @@
       return true;   
       
     },    
-
   };
-
 }());
