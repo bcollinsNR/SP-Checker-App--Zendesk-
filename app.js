@@ -15,46 +15,38 @@
 
     initialize: function(data) {
       if (data.firstLoad) {
-        console.log("Sales Priority name is:");
-        console.log(this.ticketFields('custom_field_24001886').name());
-        console.log("Sales Priority label is:");
-        console.log(this.ticketFields('custom_field_24001886').label());
-        console.log("Initial Sales Priority selected value is:");
-        console.log(this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label());
-        initialScore = this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label();       
+        try {
+          initialScore = this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label();
+        }
+        catch(e)
+        {
+          //either it is not defined or the label is incorrect, etc
+          initialScore = '-';
+        }      
       }
     },
 
     ticketSaveHandler: function(data) { // function called when we load
-      console.log("Initial Sales Priority selected value is:");
-      console.log(this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label());
-      
-      if (this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")) != 'undefined') 
-      {
-        finalScore = this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label();        
-      }
-      else
-      {
+      try {
+        finalScore = this.ticketFields("custom_field_24001886").options(this.ticket().customField("custom_field_24001886")).label();      
+      } 
+      catch (e) {
         finalScore = '-';
+        if (initialScore == '-') {
+          // don't need to fail if this was not set initially
+          return true;
+        }
+        else {
+          return 'You cannot set an empty Sales Priority score for this ticket. Please ensure this value is set correctly before saving.';
+        }
       }
       
-
-      console.log("initial and final scores");
+      console.log("Initial and final SP scores have been checked successfully.");
       console.log(initialScore);
       console.log(finalScore);
 
-      if (initialScore != '-' && finalScore == '-')
-      {
-
-        var msg = '<strong>FAIL!</strong>';
-        services.notify(msg, 'alert');
-        console.log("You cannot remove the SP score!");
-        return false;
-      }
-      else
-      {
-        return true;   
-      }
+      return true;   
+      
     },    
 
   };
