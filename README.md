@@ -3,7 +3,7 @@
 
 ### This Zendesk application is designed to:
 
-* Not allow sales priority to be removed if it has been set
+* Not allow sales priority to be removed if it has been set previously
 
 
 
